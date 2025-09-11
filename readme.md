@@ -1,27 +1,148 @@
-# szr35
+# SZR35 - A 36-Key Split Keyboard 
 
-![szr35](imgur.com image replace me!)
+## Introduction
+The **SZR35** is a minimalist 36-key split keyboard. It follows the popular 3x5+3 layout and is aimed at users who value ergonomic typing, portability, and open-source firmware flexibility. It ships with Vial-compatible firmware and is built around an STM32 microcontroller.
 
-*A short description of the keyboard/project*
+## Features
+- 36-key (3x5 grid + 3 thumb keys per side)
+- Split ergonomic design
+- USB-C connectivity on both halves
+- Fully programmable with QMK and Vial
+- Per-key RGB backlighting
+- Vial-compatible firmware for live remapping
+- STM32 DFU bootloader support
 
-* Keyboard Maintainer: [diegorodriguezv](https://github.com/diegorodriguezv)
-* Hardware Supported: *The PCBs, controllers supported*
-* Hardware Availability: *Links to where you can find this hardware*
+## Hardware
 
-Make example for this keyboard (after setting up your build environment):
+- **Microcontroller:** STM32F401RBT6 (Cortex-M4, 128KB Flash, 64KB RAM)
+- **PCB Color:** Purple
+- **Switches:** Leobog Graywood V4 Linear
+- **Keycaps:** _mystery_
+- **Backlighting:** Addressable RGB (WS2812 or similar)
+- **Connection:** USB-C on both halves, TRS jack for interconnect
 
-    make szr35:default
+## Bootloader & Flashing Behavior
 
-Flashing example for this keyboard:
+- Each half can enter DFU mode by holding a key while plugging in the USB cable. `Q` for the left, `P` for the right.
+- Both halves can also enter bootloader mode by shorting the reset pads while plugging in. Useful if you flash a misbehaving firmware. The reset pads are a pair of pads with holes marked within a white rectangle. Not the ones at the edge oposing the USB connectors but about 2 or 3 centimeters from that edge.
+- **Both halves must be flashed individually**, using the **same `.bin` file**.
 
-    make szr35:default:flash
+## Photos
 
-See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
+![SZR35 Keyboard](https://i.ibb.co/ccbnBkRq/photos.png)
 
-## Bootloader
+## Firmware
 
-Enter the bootloader in 3 ways:
+The SZR35 comes with a **custom QMK firmware** with full Vial support. This project aims to make it easy to extend or customize.
 
-* **Bootmagic reset**: Hold down the key at (0,0) in the matrix (usually the top left key or Escape) and plug in the keyboard
-* **Physical reset button**: Briefly press the button on the back of the PCB - some may have pads you must short instead
-* **Keycode in layout**: Press the key mapped to `QK_BOOT` if it is available
+### Building the Firmware
+
+#### Requirements
+
+- [QMK CLI](https://docs.qmk.fm/#/newbs/getting_started)
+- szr35 firmware source code
+
+To build the firmware using QMK CLI:
+
+```bash
+qmk setup
+qmk compile -kb szr35 -km default
+```
+
+You may also create your own keymap folder (e.g. `miryoku`) and compile:
+
+```bash
+qmk compile -kb szr35 -km miryoku
+```
+
+## Flashing the Firmware
+
+### Requirements
+
+- `dfu-util` installed (or use [QMK Toolbox](https://qmk.fm/toolbox/))
+- Board in **DFU mode**
+
+### Back up the factory firmware
+
+Please keep in mind that this firmware does not yet support all the features present in the keyboard as shipped from the factory, mainly VIAL support. It's a good idea to back up the factory firmware in case you want to return to it in the future.
+
+We can use `dfu-util` to read the microcontroller memory banks.
+
+```bash
+dfu-util --upload flash0_a.bin --alt 0 -s 0x08000000
+dfu-util --upload flash0_b.bin --alt 0 -s 0x08010000
+dfu-util --upload flash0_c.bin --alt 0 -s 0x08020000
+```
+
+### Flashing via CLI
+
+```bash
+qmk flash -kb szr35 -km default
+```
+
+If you see a line like the one below, don't worry. Apparently it is a bug with `dfu-util`.
+
+```
+DFU state(10) = dfuERROR, status(10) = Device's firmware is corrupt. It cannot return to run-time (non-DFU) operations
+```
+
+### Flashing via QMK Toolbox
+
+1. Open QMK Toolbox
+2. Load your compiled `.bin` file
+3. Plug in one half while holding the boot key (Q on left, P on right)
+4. Toolbox should auto-detect the DFU device
+5. Click “Flash”
+6. Repeat 3 to 5 with the other half
+
+### Restore the factory firmware backup
+
+Repeat the following commands for each half in dfu mode.
+
+```bash
+dfu-util --download flash0_a.bin --alt 0 -s 0x08000000
+dfu-util --download flash0_b.bin --alt 0 -s 0x08010000
+dfu-util --download flash0_c.bin --alt 0 -s 0x08020000
+```
+
+## Keymap Customization
+
+You can customize your layout by editing:
+
+```
+keyboards/szr35/keymaps/your_keymap/keymap.c
+```
+
+## RGB Led Animation Effects
+
+You can enable or disable effects or change the default one by modifying the `rgb_matrix` section of `keyboard.json`.
+
+## Troubleshooting
+
+- **Only one half responds when plugged in**  
+  Flash both halves individually using the same firmware. 
+
+- **DFU device not detected**  
+  Use a data-capable USB-C cable and confirm VID:PID `0483:df11` with `dfu-util -l`.
+
+## Contributing
+
+Contributions are welcome! You can:
+
+- Improve the firmware
+- Port the board to QMK mainline
+- Clean up the code or add bootloader features 
+- Add configurator, VIA, or VIAL support
+
+Please fork and submit a pull request to make this board more accessible to the community!
+
+## License
+
+This project and firmware source files are subject to the terms of the [GPLv2 License](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html), in accordance with QMK and Vial licensing.
+
+## Notes
+
+- This project is based on [Milan Stojanovic's project](https://github.com/milan-stoj/qmk_firmware).
+- I bought this keyboard in amazon from a seller named HardToChooseOne, but is no longer available. There is still a [website](https://hardtochooseone.com). I tried to find information about SZRKBD but wasn't able to find much except other keyboards with that brand on various stores.
+- Although Milan thanks SZRKBD for providing the firmware source I don't think it is the same that was flashed from factory, as it lacks VIAL support.
+- This project is community driven and not affiliated with any manufacturer. It's main goal is to provide people who bought the keyboard with a way to customize and enhance it.

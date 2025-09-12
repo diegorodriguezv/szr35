@@ -142,7 +142,8 @@ This project and firmware source files are subject to the terms of the [GPLv2 Li
 
 ## Notes
 
-- This project is based on [Milan Stojanovic's project](https://github.com/milan-stoj/qmk_firmware).
-- I bought this keyboard in amazon from a seller named HardToChooseOne, but is no longer available. There is still a [website](https://hardtochooseone.com). I tried to find information about SZRKBD but wasn't able to find much except other keyboards with that brand on various stores.
-- Although Milan thanks SZRKBD for providing the firmware source I don't think it is the same that was flashed from factory, as it lacks VIAL support.
+- This project is based on [Milan Stojanovic's repo](https://github.com/milan-stoj/qmk_firmware).
+- Milan thanks SZRKBD for providing the firmware source. I found the [discord forum](https://discord.com/channels/440868230475677696/1374995064962551839) where he discusses his findings. 
+- The manufacturer provided firware is available [here](https://drive.google.com/file/d/11vr05nHRo689eNY6s_pMMc2oECNGn-m8/view). I think it is the same that was flashed from factory, as it has the same bugs (wrong rgb matrix) but with USB Identification "SZRKBD SZR35" instead of "Hardtochooseone SZR35" as the firware that came with my device.
+- I bought this keyboard in amazon from a seller named HardToChooseOne, [here](https://www.amazon.com/gp/product/B0DD69RGHK). There is a [website](https://hardtochooseone.com). I tried to find information about SZRKBD but wasn't able to find much except other keyboards with that brand on various stores.
 - This project is community driven and not affiliated with any manufacturer. It's main goal is to provide people who bought the keyboard with a way to customize and enhance it.

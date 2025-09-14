@@ -34,20 +34,6 @@
         "handedness": {
             "pin": "C7"
         },
-        "transport": {
-            "sync": {
-                "activity": true,
-                "layer_state": true,
-                "matrix_state": true
-            },
-            "watchdog": true,
-            "watchdog_timeout": 3000
-        },
-        "usb_detect": {
-            "enabled": true,
-            "polling_interval": 1,
-            "timeout": 10
-        }
         "matrix_pins": {
             "right": {
                 "direct": [

@@ -58,6 +58,19 @@
                 ]
             }
         },
+        "transport": {
+            "sync": {
+                "activity": true,
+                "layer_state": true,
+                "matrix_state": true
+            },
+            "watchdog": true,
+            "watchdog_timeout": 3000
+        },
+        "usb_detect": {
+            "enabled": true,
+            "polling_interval": 10,
+        },
         "bootmagic": {
             "matrix": [4, 4]
         }
@@ -168,7 +181,7 @@
             "riverflow": true
         },
         "default": {
-            "animation": "solid_reactive_simple",
+            "animation": "solid_reactive_cross",
             "sat": 0
         },
         "layout": [

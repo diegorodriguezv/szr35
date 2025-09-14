@@ -34,6 +34,16 @@
         "handedness": {
             "pin": "C7"
         },
+        "matrix_pins": {
+            "right": {
+                "direct": [
+                    ["B2", "B10", "C10", "C11", "B6"],
+                    ["B0", "B1", "C12", "D2", "B7"],
+                    ["C5", "B12", "B3", "B4", "B5"],
+                    ["C4", "A1", "C13", "NO_PIN", "NO_PIN"]
+                ]
+            }
+        },
         "transport": {
             "sync": {
                 "activity": true,
@@ -45,18 +55,7 @@
         },
         "usb_detect": {
             "enabled": true,
-            "polling_interval": 1,
-            "timeout": 10
-        }
-        "matrix_pins": {
-            "right": {
-                "direct": [
-                    ["B2", "B10", "C10", "C11", "B6"],
-                    ["B0", "B1", "C12", "D2", "B7"],
-                    ["C5", "B12", "B3", "B4", "B5"],
-                    ["C4", "A1", "C13", "NO_PIN", "NO_PIN"]
-                ]
-            }
+            "polling_interval": 10,
         },
         "bootmagic": {
             "matrix": [4, 4]
@@ -168,7 +167,7 @@
             "riverflow": true
         },
         "default": {
-            "animation": "solid_reactive_simple",
+            "animation": "solid_reactive_cross",
             "sat": 0
         },
         "layout": [

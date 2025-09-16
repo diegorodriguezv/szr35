@@ -1,6 +1,6 @@
 {
-    "keyboard_name": "szr35",
-    "manufacturer": "diegorodriguezv",
+    "keyboard_name": "SZR35",
+    "manufacturer": "SZRKB",
     "maintainer": "diegorodriguezv",
     "url": "https://github.com/diegorodriguezv/szr35",
     "bootloader": "stm32-dfu",
@@ -8,7 +8,7 @@
     "usb": {
         "pid": "0x45D4",
         "vid": "0x3601",
-        "device_version": "0.0.2"
+        "device_version": "0.0.1"
     },
     "features": {
         "bootmagic": true,

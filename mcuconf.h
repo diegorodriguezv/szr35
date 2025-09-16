@@ -1,4 +1,4 @@
-// Copyright 2023 QMK
+// Copyright 2025 QMK
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #pragma once
@@ -6,11 +6,7 @@
 #include_next <mcuconf.h>
 
 #undef STM32_SERIAL_USE_USART1
-#define STM32_SERIAL_USE_USART1 TRUE
-
 #undef STM32_PWM_USE_TIM3
-#define STM32_PWM_USE_TIM3 TRUE
-
 #undef STM32_NO_INIT
 #undef STM32_HSI_ENABLED
 #undef STM32_LSI_ENABLED
@@ -39,6 +35,8 @@
 #undef STM32_PLS
 #undef STM32_BKPRAM_ENABLE
 
+#define STM32_SERIAL_USE_USART1 TRUE
+#define STM32_PWM_USE_TIM3 TRUE
 #define STM32_NO_INIT FALSE
 #define STM32_HSI_ENABLED TRUE
 #define STM32_LSI_ENABLED TRUE

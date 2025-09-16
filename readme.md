@@ -14,7 +14,7 @@ The **SZR35** is a minimalist 36-key split keyboard. It follows the popular 3x5+
 
 ## Hardware
 
-- **Microcontroller:** STM32F401RBT6 (Cortex-M4, 128KB Flash, 64KB RAM)
+- **Microcontroller:** STM32F401RBT6 (Cortex-M4, 256KB Flash, 64KB RAM)
 - **PCB Color:** Purple
 - **Switches:** Leobog Graywood V4 Linear
 - **Keycaps:** _mystery_
@@ -33,14 +33,22 @@ The **SZR35** is a minimalist 36-key split keyboard. It follows the popular 3x5+
 
 ## Firmware
 
-The SZR35 comes with a **custom QMK firmware** with full Vial support. This project aims to make it easy to extend or customize.
+The SZR35 comes with **QMK firmware** that supports full **Vial** functionality. This project aims to make it easy to extend or customize.
 
 ### Building the Firmware
 
 #### Requirements
 
 - [QMK CLI](https://docs.qmk.fm/#/newbs/getting_started)
-- szr35 firmware source code
+- This code in `keyboards/szr35` inside the `qmk_firmware` folder of your QMK installation
+
+You can verify this location by finding the `QMK_FIRMWARE` environment variable using:
+
+```bash
+qmk env
+```
+
+#### Compiling
 
 To build the firmware using QMK CLI:
 
@@ -55,16 +63,16 @@ You may also create your own keymap folder (e.g. `miryoku`) and compile:
 qmk compile -kb szr35 -km miryoku
 ```
 
-## Flashing the Firmware
+### Flashing the Firmware
 
-### Requirements
+#### Requirements
 
 - `dfu-util` installed (or use [QMK Toolbox](https://qmk.fm/toolbox/))
 - Board in **DFU mode**
 
-### Back up the factory firmware
+#### Back up the factory firmware
 
-Please keep in mind that this firmware does not yet support all the features present in the keyboard as shipped from the factory, mainly VIAL support. It's a good idea to back up the factory firmware in case you want to return to it in the future.
+It's a good idea to back up the factory firmware in case you want to return to it in the future.
 
 We can use `dfu-util` to read the microcontroller memory banks.
 
@@ -74,7 +82,7 @@ dfu-util --upload flash0_b.bin --alt 0 -s 0x08010000
 dfu-util --upload flash0_c.bin --alt 0 -s 0x08020000
 ```
 
-### Flashing via CLI
+#### Flashing via CLI
 
 ```bash
 qmk flash -kb szr35 -km default

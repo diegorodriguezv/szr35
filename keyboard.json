@@ -55,7 +55,7 @@
         },
         "usb_detect": {
             "enabled": true,
-            "polling_interval": 10,
+            "polling_interval": 10
         },
         "bootmagic": {
             "matrix": [4, 4]

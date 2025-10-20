@@ -1,5 +1,7 @@
 # SZR35 - A 36-Key Split Keyboard 
 
+![szr35](https://i.ibb.co/vvQPBTF9/szr35.jpg)
+
 ## Introduction
 The **SZR35** is a minimalist 36-key split keyboard. It follows the popular 3x5+3 layout and is aimed at users who value ergonomic typing, portability, and open-source firmware flexibility. It ships with Vial-compatible firmware and is built around an STM32 microcontroller.
 
@@ -115,6 +117,15 @@ dfu-util --download flash0_c.bin --alt 0 -s 0x08020000
 
 ## Keymap Customization
 
+The keymap that came flashed from factory is exceptionally wrong. It lacks important keys, like 0 for example. Nevertheless it is included here for completeness.
+
+I created a much more useful default based loosely on https://peterxjang.com/blog/designing-a-36-key-custom-keyboard-layout.html
+It is a good starting point for someone who is used to normal qwerty keyboards and wants to switch easily between the 36-key keyboard and a laptop keyboard. The goal is to minimize the learning curve by avoiding key relocation and maintaining our hard-earned muscle memory.
+
+![szr35](https://github.com/user-attachments/assets/1b76e2c1-c3f8-4665-9cbb-a9ce5ff79047)
+
+The diagram was created using [KLE](https://www.keyboard-layout-editor.com/#/gists/5fb1f4c2c09118387bac308800ead9d0).
+
 You can customize your layout by editing:
 
 ```
@@ -133,7 +144,9 @@ You can enable or disable effects or change the default one by modifying the `rg
 - **DFU device not detected**  
   Use a data-capable USB-C cable and confirm VID:PID `0483:df11` with `dfu-util -l`.
 
-## Contributing
+## Contributing 
+
+This project is in process of being committed upstream to the `qmk` and `vial-qmk` projects. But this repo will be maintained adding new information and utilities relevant to the SZR35 keyboard.
 
 Contributions are welcome! You can:
 

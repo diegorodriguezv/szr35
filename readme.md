@@ -42,6 +42,16 @@ The SZR35 comes with **QMK firmware** that supports full **Vial** functionality.
 #### Requirements
 
 - [QMK CLI](https://docs.qmk.fm/#/newbs/getting_started)
+
+```bash
+qmk setup
+```
+- Check that your QMK installation is OK:
+
+```bash
+qmk doctor
+```
+
 - This code in `keyboards/szr35` inside the `qmk_firmware` folder of your QMK installation
 
 You can verify this location by finding the `QMK_FIRMWARE` environment variable using:
@@ -57,6 +67,12 @@ To build the firmware using QMK CLI:
 ```bash
 qmk setup
 qmk compile -kb szr35 -km default
+```
+
+If you want you can use the keymap that came with the keyboard from factory:
+
+```bash
+qmk compile -kb szr35 -km factory
 ```
 
 You may also create your own keymap folder (e.g. `miryoku`) and compile:
